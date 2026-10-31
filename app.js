@@ -55,4 +55,8 @@ $('#bottom-cart').onclick=cartView;
 $('#combos').onclick=()=>navigate('#trios');
 function openLinkedView(){const hash=location.hash.slice(1);const category=categories.find(c=>c[2]===hash);if(category)select(category[0]);else if(hash==='bebidas')select('Bebidas');else if(hash==='sacola'){if($('#home-view').hidden!==true)showHome();cartView()}else showHome(hash==='historia');}
 document.addEventListener('click',e=>{const link=e.target.closest('a[href^="#"],a[href^="./#"]');if(!link||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const hash=link.getAttribute('href').replace('./','');if(['#inicio','#historia','#cardapio','#bebidas',...categories.map(c=>'#'+c[2])].includes(hash)){e.preventDefault();navigate(hash)}});
-render();count();openLinkedView();window.addEventListener('hashchange',openLinkedView);
+render();count();
+// Always start on the homepage when the site is loaded or refreshed.
+// In-session navigation to the menu and beverages still works normally.
+if(location.hash && location.hash!=='#inicio')history.replaceState(null,'',location.pathname+location.search);
+openLinkedView();window.addEventListener('hashchange',openLinkedView);
