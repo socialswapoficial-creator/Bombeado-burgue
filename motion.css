@@ -1,0 +1,22 @@
+/* Short, one-time reveals. No layout movement or continuous decorative loops. */
+.reveal-item{transition:opacity .6s ease var(--reveal-delay,0ms),transform .6s cubic-bezier(.22,.61,.36,1) var(--reveal-delay,0ms)}
+.reveal-item.reveal-pending{opacity:0;transform:translate3d(0,20px,0)}
+.product{animation:none}
+@media(hover:hover) and (pointer:fine){
+ .product .product-open img{transition:transform .4s ease}
+ .product .product-open:hover img{transform:scale(1.035)}
+ .gold-button,.dark-button,.footer-order{transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease}
+ .gold-button:hover,.dark-button:hover,.footer-order:hover{transform:translateY(-2px);box-shadow:0 5px 18px #e2bc5526}
+}
+.add,.icon,.category-chip,.bottom-nav>a,.bottom-nav>button{transition:transform .18s ease,background-color .18s ease,color .18s ease}
+.add:active,.gold-button:active,.dark-button:active,.icon:active,.category-chip:active{transform:scale(.96)}
+dialog[open]{animation:dialog-arrive .2s ease both}
+@keyframes dialog-arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:560px){.reveal-item.reveal-pending{transform:translate3d(0,14px,0)}.reveal-item{transition-duration:.48s}}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ .reveal-item,.reveal-item.reveal-pending{opacity:1!important;transform:none!important;transition:none!important}
+ .product .product-open img,.gold-button,.dark-button,.footer-order,.add,.icon,.category-chip,.bottom-nav>a,.bottom-nav>button{transition:none!important}
+ dialog[open]{animation:none!important}
+}
+@media print{.reveal-item.reveal-pending{opacity:1!important;transform:none!important}}
